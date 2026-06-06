@@ -65,22 +65,28 @@
 	</style>
 	
 <link rel="icon" type="image/png" href="favicon.png">
-
+</head>
 <body>
+
 	
 	<noscript>This webpage makes extensive use of JavaScript. Please enable JavaScript in your web browser to view this page.</noscript>
-	
-	<div id="openfl-content"></div>
+		<div id="openfl-content"></div>
 	
 	<script type="text/javascript">
-		// Wait for the window and all script assets to fully load before initializing
-		window.onload = function() {
-			if (typeof lime !== 'undefined') {
-				lime.embed ("ShaggyMod", "openfl-content", 1280, 720, { parameters: {} });
-			} else {
-				console.error("Lime framework failed to load. Check if ShaggyMod.js is in the root folder.");
-			}
-		};
+		// Initialize the main application container 
+		(function () {
+			var script = document.createElement('script');
+			script.src = "./ShaggyMod.js";
+			script.onload = function() {
+				if (typeof lime !== 'undefined') {
+					lime.embed ("ShaggyMod", "openfl-content", 1280, 720, { parameters: {} });
+				} else {
+					console.error("Lime framework failed to load. Check if your main script file name is strictly case-matched.");
+				}
+			};
+			document.body.appendChild(script);
+		})();
 	</script>
 	
 </body>
+</html>
