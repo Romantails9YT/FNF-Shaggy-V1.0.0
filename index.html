@@ -72,8 +72,14 @@
 	<div id="openfl-content"></div>
 	
 	<script type="text/javascript">
-		lime.embed ("ShaggyMod", "openfl-content", 1280, 720, { parameters: {} });
+		// Wait for the window and all script assets to fully load before initializing
+		window.onload = function() {
+			if (typeof lime !== 'undefined') {
+				lime.embed ("ShaggyMod", "openfl-content", 1280, 720, { parameters: {} });
+			} else {
+				console.error("Lime framework failed to load. Check if ShaggyMod.js is in the root folder.");
+			}
+		};
 	</script>
 	
 </body>
-</html>
